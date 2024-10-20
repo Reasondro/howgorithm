@@ -7,7 +7,10 @@ html {
   --color-grey-600: rgb(36, 36, 41);
   --color-grey-900: rgb(25, 25, 27);
 
+  --color-black-600: rgb(20, 20, 20);
   --color-black-700: rgb(15, 15, 15);
+
+  --color-white-300: rgb(246, 248, 255);
   --color-white-600: rgb(248, 248, 248);
 
   --color-primary-100: rgb(167, 226, 255);
@@ -16,9 +19,13 @@ html {
   /* --color-primary: rgb(31, 92, 97); */
   --color-primary: rgb(40, 61, 99);
 
-  --color-accent-100: rgb(204, 204, 235);
+  /* --color-accent-100: rgb(204, 204, 235);
   --color-accent-300: rgb(140, 140, 216);
-  --color-accent-600: rgb(72, 72, 104);
+  --color-accent-600: rgb(72, 72, 104); */
+
+  --color-accent-100: rgb(102, 112, 247);
+  --color-accent-300: rgb(79, 111, 197);
+  --color-accent-600: rgb(35, 38, 88);
 
   --max-width: 130rem;
   --min-width: 50rem;
@@ -29,7 +36,12 @@ body {
   margin: 0px;
   height: 100%;
   min-height: 100%;
-  background-color: rgb(246, 248, 255);
+  background-color: var(--color-white-300);
+  color: var(--color-black-600);
+}
+h1 {
+  margin: 0;
+  font-weight: 600;
 }
 
 ul {
@@ -47,15 +59,20 @@ a {
 }
 
 #main-header {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   display: grid;
   grid-template-columns: auto auto 1fr auto;
-  margin: 1rem 0 3rem 0;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0 0 3rem 0;
   align-content: center;
+  position: sticky;
+  top: 0;
+
+  box-shadow: 0px 0px 2px var(--color-grey-400);
+  background-color: var(--color-white-300);
 }
 
 #main-header #hamburger-wrapper {
@@ -67,6 +84,12 @@ a {
 #main-header #hamburger-wrapper svg {
   align-self: center;
   width: 1.75rem;
+  cursor: pointer;
+  transition: color 0.4s ease-in 0s;
+}
+
+#main-header #hamburger-wrapper svg:hover {
+  color: var(--color-accent-300);
 }
 
 #main-header #logo {
@@ -93,10 +116,11 @@ a {
   font-family: "Oxanium", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  transition: color 0.4s ease-in 0s;
+  transition: color 0.4s ease-in 0s, font-size 0.1s ease-in 0s;
 }
 
 #main-header .algo-type a:hover {
+  font-size: 1rem;
   color: var(--color-accent-300);
   text-decoration: underline;
 }
@@ -163,12 +187,13 @@ a {
   height: 100%;
   grid-template-columns: auto auto auto;
   gap: 1rem;
-  background-color: #76787a;
+  border: 1px solid rgb(40, 61, 99);
   padding: 1rem;
 }
 
-#grid-container > div {
-  background-color: rgb(222, 244, 255);
+#grid-container > section {
+  border: 1px solid rgb(40, 61, 99);
+
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
@@ -178,14 +203,28 @@ a {
   grid-column-start: 1;
   grid-column-end: 4;
 }
-.item2 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 4;
-}
+
 .item8 {
+  height: 20rem;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 5;
+}
+
+#main-footer {
+  display: flex;
+  flex: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 15rem;
+  width: 100%;
+  margin: 4rem 0 0 0;
+
+  background-color: var(--color-black-700);
+}
+
+#main-footer h1 {
+  color: var(--color-white-600);
 }
