@@ -60,3 +60,20 @@
   /* height: 1rem; */
   background-color: brown;
 }
+
+@media (max-width: 1800px) {
+  .item1 {
+    height: 15rem;
+  }
+
+  #overview-content h1 {
+    font-size: 3rem;
+  }
+  #overview-content p {
+    font-size: 1rem;
+  }
+
+  .item5 {
+    height: 27rem;
+  }
+}

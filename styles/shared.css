@@ -233,4 +233,8 @@ a {
   html {
     --max-width: 85rem;
   }
+
+  #main-header {
+    margin: 0 0 1.25rem 0;
+  }
 }
