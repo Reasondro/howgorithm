@@ -228,3 +228,9 @@ a {
 #main-footer h1 {
   color: var(--color-white-600);
 }
+
+@media (max-width: 1800px) {
+  html {
+    --max-width: 85rem;
+  }
+}
