@@ -13,10 +13,11 @@ html {
   --color-white-300: rgb(246, 248, 255);
   --color-white-600: rgb(248, 248, 248);
 
-  --color-primary-100: rgb(167, 226, 255);
-  --color-primary-400: rgb(0, 170, 255);
+  /* --color-primary-100: rgb(167, 226, 255);
+  --color-primary-400: rgb(0, 170, 255); */
   /* --color-primary: rgb(29, 26, 77); */
   /* --color-primary: rgb(31, 92, 97); */
+
   --color-primary: rgb(40, 61, 99);
 
   /* --color-accent-100: rgb(204, 204, 235);
@@ -26,6 +27,7 @@ html {
   --color-accent-100: rgb(102, 112, 247);
   --color-accent-300: rgb(79, 111, 197);
   --color-accent-600: rgb(35, 38, 88);
+  --color-accent-900: rgb(2, 5, 49);
 
   --max-width: 130rem;
   --min-width: 50rem;
@@ -187,15 +189,13 @@ a {
   height: 100%;
   grid-template-columns: auto auto auto;
   gap: 1rem;
-  border: 1px solid rgb(40, 61, 99);
+  /* border: 1px solid rgb(40, 61, 99); */
   padding: 1rem;
 }
 
 #grid-container > section {
   border: 1px solid rgb(40, 61, 99);
-
   text-align: center;
-  padding: 20px 0;
   font-size: 30px;
 }
 

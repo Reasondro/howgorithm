@@ -12,8 +12,9 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="/styles/shared.css" />
+  <link rel="stylesheet" href="/styles/lab.css" />
+  <link rel="stylesheet" href="/styles/binary-search.css" />
   <link rel="icon" href="icons/favicon.ico" />
-
   <body>
     <header id="main-header">
       <nav id="hamburger-wrapper">
@@ -54,9 +55,7 @@
             <a href="/">SIGN IN</a>
           </li>
           <li>
-            <a href="/pages/classical-search/binary-search.html" id="action-btn"
-              >PLAY</a
-            >
+            <a href="/index.html" id="action-btn">EXIT</a>
           </li>
           <li id="search-wrapper">
             <svg
@@ -79,14 +78,34 @@
     </header>
     <main id="main-wrapper">
       <div id="grid-container">
-        <section class="item1"><p>1</p></section>
-        <section class="item2"><p>2</p></section>
-        <section class="item3"><p>3</p></section>
-        <section class="item4"><p>4</p></section>
-        <section class="item5"><p>5</p></section>
-        <section class="item6"><p>6</p></section>
-        <section class="item7"><p>7</p></section>
-        <section class="item8"><p>8</p></section>
+        <section class="item1">
+          <div id="overview-content">
+            <h1>Binary Search</h1>
+            <p>
+              Binary Search Algorithm is a searching algorithm used in a sorted
+              array by repeatedly dividing the search interval in half. The idea
+              of binary search is to use the information that the array is
+              sorted and reduce the time complexity to O(log N).
+            </p>
+          </div>
+        </section>
+        <section class="item2">
+          <h1>{Background Process}</h1>
+        </section>
+        <section class="item3">
+          <h1>{Algorithm problem}</h1>
+        </section>
+        <section class="item4">
+          <form action="/pages/classical-search/binary-search.html" method="">
+            <label for="user-input">
+              <input type="text" id="user-input" name="user-input" />
+            </label>
+          </form>
+        </section>
+        <section class="item5">
+          <h1>{Visualisation}</h1>
+          <span></span>
+        </section>
       </div>
     </main>
     <footer id="main-footer"><h1>This is a Footer</h1></footer>
