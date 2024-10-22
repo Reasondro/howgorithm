@@ -13,8 +13,9 @@
   />
   <link rel="stylesheet" href="/styles/shared.css" />
   <link rel="stylesheet" href="/styles/lab.css" />
-  <link rel="stylesheet" href="/styles/binary-search.css" />
+  <link rel="stylesheet" href="/styles/classical-search/binary-search.css" />
   <link rel="icon" href="icons/favicon.ico" />
+
   <body>
     <header id="main-header">
       <nav id="hamburger-wrapper">
@@ -93,25 +94,54 @@
           <h1>{Background Process}</h1>
         </section>
         <section class="item3">
-          <h1>{Algorithm problem}</h1>
+          <h1 id="result">{Algorithm problem}</h1>
         </section>
         <section class="item4">
-          <form action="/pages/classical-search/binary-search.html" method="">
-            <label for="user-input"> </label>
-            <input
-              id="user-input"
-              type="text"
-              name="user-input"
-              placeholder="Enter your input here"
-            />
+          <form onsubmit="runBinarySearch(event)">
+            <div id="user-input-array-wrapper">
+              <label for="user-input-array"> </label>
+              <input
+                id="user-input-array"
+                type="text"
+                name="user-input-array"
+                placeholder="Enter your array here"
+              />
+            </div>
+            <div id="user-input-el-wrapper">
+              <label for="user-input-el"></label>
+              <input
+                id="user-input-el"
+                type="text"
+                name="user-input-el"
+                placeholder="Your element"
+              />
+            </div>
+            <div id="button-wrapper">
+              <button type="submit" aria-label="Submit">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
           </form>
         </section>
         <section class="item5">
           <h1>{Visualisation}</h1>
+
           <span></span>
         </section>
       </div>
     </main>
     <footer id="main-footer"><h1>This is a Footer</h1></footer>
+    <script src="/modules/classical-search/binary-search.js"></script>
   </body>
 </html>
