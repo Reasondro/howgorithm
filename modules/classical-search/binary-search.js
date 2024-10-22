@@ -135,5 +135,58 @@ function runBinarySearch(event) {
   let index = binarySearch(arr, el);
   console.log("Found at index:" + index);
 
-  document.getElementById("result").innerHTML = ` Find ${el} at: ${index} `;
+  document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
+  document.getElementById("user-el").innerHTML = `Your element: ${el} `;
+
+  if (index === -1) {
+    document.getElementById(
+      "user-instructions"
+    ).innerHTML = `${el} does not exist in your array `;
+  } else {
+    document.getElementById("user-instructions").innerHTML = "";
+    document.getElementById(
+      "result"
+    ).innerHTML = ` ${el} located at index ${index} `;
+  }
 }
+
+function handleInputChange(event) {
+  const inputField = event.target;
+
+  if (inputField.value.trim() !== "") {
+    inputField.style.animation = "none";
+    inputField.style.backgroundColor = "var(--color-secondary)";
+    inputField.style.borderColor = "var(--color-accent-300)";
+  } else {
+    inputField.style.borderColor = "var(--color-grey-300)";
+    inputField.style.animation = "colorCycleGrey 1s infinite";
+  }
+  checkBothInputs();
+}
+
+function checkBothInputs() {
+  const inputArray = document.getElementById("user-input-array").value.trim();
+  const inputEl = document.getElementById("user-input-el").value.trim();
+  const instructions = document.getElementById("user-instructions");
+
+  const userArray = document.getElementById("user-array");
+  const userEl = document.getElementById("user-el");
+
+  if (inputArray !== "" && inputEl !== "") {
+    instructions.innerText = "Now click the play button!";
+    userArray.innerText = "";
+    userEl.innerText = "";
+  } else {
+    instructions.innerText = "Please fill both inputs.";
+    userArray.innerText = "";
+    userEl.innerText = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const inputArrayField = document.getElementById("user-input-array");
+  const inputElField = document.getElementById("user-input-el");
+
+  inputArrayField.addEventListener("input", handleInputChange);
+  inputElField.addEventListener("input", handleInputChange);
+});
