@@ -138,15 +138,19 @@ function runBinarySearch(event) {
   document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
   document.getElementById("user-el").innerHTML = `Your element: ${el} `;
 
+  const playBtn = document.getElementById("play-btn");
+
   if (index === -1) {
     document.getElementById(
       "user-instructions"
-    ).innerHTML = `${el} does not exist in your array `;
+    ).innerHTML = `Element does not exist in your array `;
+    playBtn.style.animation = "none";
   } else {
     document.getElementById("user-instructions").innerHTML = "";
     document.getElementById(
       "result"
     ).innerHTML = ` ${el} located at index ${index} `;
+    playBtn.style.animation = "none";
   }
 }
 
@@ -171,13 +175,16 @@ function checkBothInputs() {
 
   const userArray = document.getElementById("user-array");
   const userEl = document.getElementById("user-el");
+  const playBtn = document.getElementById("play-btn");
 
   if (inputArray !== "" && inputEl !== "") {
     instructions.innerText = "Now click the play button!";
+    playBtn.style.animation = "colorCycle 1s infinite";
     userArray.innerText = "";
     userEl.innerText = "";
   } else {
     instructions.innerText = "Please fill both inputs.";
+    playBtn.style.animation = "none";
     userArray.innerText = "";
     userEl.innerText = "";
   }
