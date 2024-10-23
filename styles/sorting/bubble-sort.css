@@ -141,6 +141,11 @@
   color: var(--color-white-600);
 }
 
+.highlight {
+  color: red;
+  font-weight: bold;
+}
+
 @keyframes colorCycle {
   0% {
     color: var(--color-red-500);

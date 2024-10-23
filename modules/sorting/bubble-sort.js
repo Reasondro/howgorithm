@@ -6,17 +6,32 @@ function bubbleSort(arr) {
   iterations = []; // Reset iterations
   for (let i = 0; i < len - 1; i++) {
     for (let j = 0; j < len - i - 1; j++) {
-      // Record the state before any swap
-      iterations.push(arr.slice());
+      // Record the state before any swap, along with indices
+      iterations.push({
+        array: arr.slice(),
+        i: i,
+        j: j,
+        swapped: false,
+      });
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         // Record the state after swap
-        iterations.push(arr.slice());
+        iterations.push({
+          array: arr.slice(),
+          i: i,
+          j: j,
+          swapped: true,
+        });
       }
     }
   }
   // Record the final sorted array
-  iterations.push(arr.slice());
+  iterations.push({
+    array: arr.slice(),
+    i: null,
+    j: null,
+    swapped: false,
+  });
 }
 
 function getInputArr() {
@@ -54,12 +69,34 @@ function runBubbleSort(event) {
 
 function displayCurrentStep() {
   if (currentStep >= 0 && currentStep < iterations.length) {
-    const currentArray = iterations[currentStep];
-    document.getElementById("result").innerHTML = ` [${currentArray}] `;
+    const { array, i, j, swapped } = iterations[currentStep];
+    const arrayDisplay = array
+      .map((num, index) => {
+        if (index === j || index === j + 1) {
+          // Highlight the elements being compared
+          return `<span class="highlight">${num}</span>`;
+        } else {
+          return num;
+        }
+      })
+      .join(", ");
+
+    document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
     document.getElementById("user-array").innerHTML = `Step ${
       currentStep + 1
-    }: [${currentArray}] `;
+    }: [${arrayDisplay}]`;
+
+    // Display the current loop indices
+    const loopInfo =
+      i !== null && j !== null
+        ? `Outer Loop (i): ${i}, Inner Loop (j): ${j}${
+            swapped ? " - Swapped" : ""
+          }`
+        : "Sorting Complete";
+
+    document.getElementById("loop-info").innerText = loopInfo;
   }
+
   // Disable buttons at boundaries
   document.getElementById("previous-btn").disabled = currentStep === 0;
   document.getElementById("next-btn").disabled =
