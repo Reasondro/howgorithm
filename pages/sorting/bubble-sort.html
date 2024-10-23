@@ -13,6 +13,7 @@
   />
   <link rel="stylesheet" href="/styles/shared.css" />
   <link rel="stylesheet" href="/styles/lab.css" />
+  <link rel="stylesheet" href="/styles/sorting/bubble-sort.css" />
   <link rel="icon" href="icons/favicon.ico" />
   <body>
     <header id="main-header">
@@ -94,20 +95,52 @@
           </div>
         </section>
         <section class="item2">
-          <h1>{Background Process}</h1>
+          <p id="user-instructions">
+            <em> Fill the inputs below! </em>
+          </p>
+          <p id="user-array"></p>
         </section>
         <section class="item3">
-          <h1>{Algorithm problem}</h1>
+          <p id="result"></p>
         </section>
         <section class="item4">
-          <h1>{User Input}</h1>
+          <form onsubmit="runBubbleSort(event)">
+            <div id="user-input-array-wrapper">
+              <label for="user-input-array"> </label>
+              <input
+                id="user-input-array"
+                type="text"
+                name="user-input-array"
+                placeholder="Enter your array here"
+              />
+            </div>
+            <div id="button-wrapper">
+              <button type="submit" aria-label="Submit">
+                <svg
+                  id="play-btn"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
         </section>
         <section class="item5">
           <h1>{Visualisation}</h1>
+
           <span></span>
         </section>
       </div>
     </main>
     <footer id="main-footer"><h1>This is a Footer</h1></footer>
+    <script src="/modules/sorting/bubble-sort.js"></script>
   </body>
 </html>

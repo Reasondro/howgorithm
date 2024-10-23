@@ -134,10 +134,8 @@ function runBinarySearch(event) {
 
   let index = binarySearch(arr, el);
   console.log("Found at index:" + index);
-
   document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
   document.getElementById("user-el").innerHTML = `Your element: ${el} `;
-
   const playBtn = document.getElementById("play-btn");
 
   if (index === -1) {
@@ -145,13 +143,13 @@ function runBinarySearch(event) {
       "user-instructions"
     ).innerHTML = `Element does not exist in your array `;
     playBtn.style.animation = "none";
-  } else {
-    document.getElementById("user-instructions").innerHTML = "";
-    document.getElementById(
-      "result"
-    ).innerHTML = ` ${el} located at index ${index} `;
-    playBtn.style.animation = "none";
+    return;
   }
+  document.getElementById("user-instructions").innerHTML = "";
+  document.getElementById(
+    "result"
+  ).innerHTML = ` ${el} located at index ${index} `;
+  playBtn.style.animation = "none";
 }
 
 function handleInputChange(event) {
