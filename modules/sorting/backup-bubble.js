@@ -3,21 +3,24 @@ let currentStep = 0;
 
 function bubbleSort(arr) {
   const len = arr.length;
-  iterations = []; // Reset iterations
+  let sortedArray = arr.slice();
+
   for (let i = 0; i < len - 1; i++) {
     for (let j = 0; j < len - i - 1; j++) {
-      // Record the state before any swap
-      iterations.push(arr.slice());
+      // console.log(j);
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-        // Record the state after swap
-        iterations.push(arr.slice());
       }
     }
   }
-  // Record the final sorted array
-  iterations.push(arr.slice());
 }
+
+// window.onload = function () {
+//   let storedInput = localStorage.getItem("savedUserInputBinary");
+//   if (storedInput) {
+//     document.getElementById("result").innerHTML = "Cached array:" + storedInput;
+//   }
+// };
 
 function getInputArr() {
   let userInputArray = document.getElementById("user-input-array").value.trim();
@@ -28,14 +31,21 @@ function getInputArr() {
     .map(Number)
     .filter((num) => !isNaN(num));
 
-  console.log("Got: " + arrNum + " with type of " + typeof arrNum);
+  console.log("Got: " + arrNum + "with type of" + typeof arrNum);
 
   return arrNum;
 }
 
+function saveInput(data) {
+  const savedData = data;
+  localStorage.setItem("savedUserInputBubble", savedData);
+}
+
 function runBubbleSort(event) {
   event.preventDefault();
+
   let arr = getInputArr();
+
   const playBtn = document.getElementById("play-btn");
 
   if (arr.length === 0) {
@@ -46,38 +56,10 @@ function runBubbleSort(event) {
     return;
   }
   bubbleSort(arr);
-  currentStep = 0;
-  displayCurrentStep();
   document.getElementById("user-instructions").innerHTML = "";
+  document.getElementById("result").innerHTML = ` [${arr}] `;
+  document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
   playBtn.style.animation = "none";
-}
-
-function displayCurrentStep() {
-  if (currentStep >= 0 && currentStep < iterations.length) {
-    const currentArray = iterations[currentStep];
-    document.getElementById("result").innerHTML = ` [${currentArray}] `;
-    document.getElementById("user-array").innerHTML = `Step ${
-      currentStep + 1
-    }: [${currentArray}] `;
-  }
-  // Disable buttons at boundaries
-  document.getElementById("previous-btn").disabled = currentStep === 0;
-  document.getElementById("next-btn").disabled =
-    currentStep === iterations.length - 1;
-}
-
-function nextStep() {
-  if (currentStep < iterations.length - 1) {
-    currentStep++;
-    displayCurrentStep();
-  }
-}
-
-function previousStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    displayCurrentStep();
-  }
 }
 
 function handleInputChange(event) {
@@ -115,10 +97,8 @@ function checkInput() {
 document.addEventListener("DOMContentLoaded", () => {
   const inputArrayField = document.getElementById("user-input-array");
   inputArrayField.addEventListener("input", handleInputChange);
-
-  // Bind next and previous buttons
-  const nextBtn = document.getElementById("next-btn");
-  const previousBtn = document.getElementById("previous-btn");
-  nextBtn.addEventListener("click", nextStep);
-  previousBtn.addEventListener("click", previousStep);
 });
+
+function nextStep() {}
+
+function previousStep() {}
