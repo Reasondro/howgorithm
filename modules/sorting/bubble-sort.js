@@ -5,22 +5,30 @@ function bubbleSort(arr) {
   const len = arr.length;
   iterations = []; // Reset iterations
   for (let i = 0; i < len - 1; i++) {
+    const currentI = i; // Capture the current value of i
     for (let j = 0; j < len - i - 1; j++) {
+      const currentJ = j; // Capture the current value of j
       // Record the state before any swap, along with indices
       iterations.push({
         array: arr.slice(),
-        i: i,
-        j: j,
+        i: currentI,
+        j: currentJ,
         swapped: false,
       });
       if (arr[j] > arr[j + 1]) {
+        // Capture the values and indices to be swapped
+        const swappedIndices = [j, j + 1];
+        const swappedValues = [arr[j], arr[j + 1]];
+        // Perform the swap
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         // Record the state after swap
         iterations.push({
           array: arr.slice(),
-          i: i,
-          j: j,
+          i: currentI,
+          j: currentJ,
           swapped: true,
+          swappedIndices: swappedIndices,
+          swappedValues: swappedValues,
         });
       }
     }
@@ -69,7 +77,9 @@ function runBubbleSort(event) {
 
 function displayCurrentStep() {
   if (currentStep >= 0 && currentStep < iterations.length) {
-    const { array, i, j, swapped } = iterations[currentStep];
+    const { array, i, j, swapped, swappedIndices, swappedValues } =
+      iterations[currentStep];
+
     const arrayDisplay = array
       .map((num, index) => {
         if (index === j || index === j + 1) {
@@ -82,19 +92,35 @@ function displayCurrentStep() {
       .join(", ");
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
-    document.getElementById("user-array").innerHTML = `Step ${
-      currentStep + 1
-    }: [${arrayDisplay}]`;
+    document.getElementById("user-array").innerHTML = `Step ${currentStep + 1}`;
 
-    // Display the current loop indices
-    const loopInfo =
-      i !== null && j !== null
-        ? `Outer Loop (i): ${i}, Inner Loop (j): ${j}${
-            swapped ? " - Swapped" : ""
-          }`
-        : "Sorting Complete";
+    // Display the outer loop index
+    let outerLoopInfo;
+    if (i !== null) {
+      outerLoopInfo = `Outer Loop (i): ${i}`;
+    } else {
+      outerLoopInfo = "Sorting Complete";
+    }
+    document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
-    document.getElementById("loop-info").innerText = loopInfo;
+    // Display the inner loop index
+    let innerLoopInfo;
+    if (j !== null) {
+      innerLoopInfo = `Inner Loop (j): ${j}`;
+    } else {
+      innerLoopInfo = "";
+    }
+    document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+
+    // Update the status-info element with swap details
+    const statusInfoElement = document.getElementById("status-info");
+    if (swapped) {
+      const [index1, index2] = swappedIndices;
+      const [value1, value2] = swappedValues;
+      statusInfoElement.innerText = `Swapped numbers at [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+    } else {
+      statusInfoElement.innerText = "";
+    }
   }
 
   // Disable buttons at boundaries
@@ -158,4 +184,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const previousBtn = document.getElementById("previous-btn");
   nextBtn.addEventListener("click", nextStep);
   previousBtn.addEventListener("click", previousStep);
+
+  // Bind play button
+  const playBtn = document.getElementById("play-btn");
+  playBtn.addEventListener("click", runBubbleSort);
 });
