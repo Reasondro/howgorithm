@@ -44,11 +44,10 @@ function runBubbleSort(event) {
   event.preventDefault();
 
   let arr = getInputArr();
-  let len = arr.length;
 
   const playBtn = document.getElementById("play-btn");
 
-  if (len === 0) {
+  if (arr.length === 0) {
     document.getElementById(
       "user-instructions"
     ).innerHTML = `Fill your array first `;
@@ -59,6 +58,7 @@ function runBubbleSort(event) {
   document.getElementById("user-instructions").innerHTML = "";
   document.getElementById("result").innerHTML = ` [${arr}] `;
   document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
+  playBtn.style.animation = "none";
 }
 
 function handleInputChange(event) {
@@ -87,7 +87,7 @@ function checkInput() {
     playBtn.style.animation = "colorCycle 1s infinite";
     userArray.innerText = "";
   } else {
-    instructions.innerText = "Please fill the input.";
+    instructions.innerText = "Fill your array!";
     playBtn.style.animation = "none";
     userArray.innerText = "";
   }

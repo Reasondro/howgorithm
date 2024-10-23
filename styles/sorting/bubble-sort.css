@@ -21,6 +21,7 @@
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
+  background-color: var(--color-black-700);
 }
 
 .item3 p {
@@ -28,6 +29,7 @@
   margin: 0;
   font-size: 3.5rem;
   font-weight: bold;
+  color: var(--color-white-600);
 }
 
 .item4 form {
@@ -76,7 +78,7 @@
 
   border-radius: 10px;
   overflow: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--color-white-600);
@@ -86,6 +88,57 @@
 .item4 form input:focus {
   outline: none;
   animation: none;
+}
+
+.item5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.item5 #controller-container {
+  display: flex;
+  justify-content: center;
+  grid-column: 1/4;
+  background-color: var(--color-grey-600);
+  height: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.item5 #controller-text {
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: var(--color-white-600);
+}
+
+.item5 button {
+  padding: 0;
+  margin: 0;
+  display: block;
+  height: 100%;
+  grid-row: 2/4;
+  border: none;
+  background-color: transparent;
+}
+
+.item5 button svg {
+  margin: 0;
+  width: 5rem;
+  padding: 1rem;
+  /* color: var(--color-white-600); */
+  color: var(--color-primary);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in 0s, color 0.1s ease-in 0s;
+}
+.item5 button :hover {
+  background-color: var(--color-primary);
+  color: var(--color-white-600);
 }
 
 @keyframes colorCycle {

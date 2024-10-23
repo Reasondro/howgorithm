@@ -6,6 +6,7 @@
 // };
 
 //? utils (shitty type module bug can't make me import stuffs)
+// ? Merge Sort CREDITS TO GEEKSFORGEES. GOATED website
 function merge(arr, left, mid, right) {
   const n1 = mid - left + 1;
   const n2 = right - mid;
@@ -73,7 +74,7 @@ function binarySearch(arr, target) {
       r = mid - 1; //? r pindah ke kiri MID, karena masih MID lebih besar dari target
     }
   }
-  return -1; // Target not found
+  return -1; //? ya kalo gaaad target
 }
 
 function getInputArr() {
@@ -90,26 +91,15 @@ function getInputArr() {
   return arrNum;
 }
 
-// function getInputEl() {
-//   let userInputEl = document.getElementById("user-input-el").value.trim();
-//   const el = userInputEl
-//     .split(",")
-//     .map((num) => num.trim())
-//     .filter((num) => num !== "")
-//     .map(Number)
-//     .filter((num) => !isNaN(num));
-
-//   console.log("Got: " + el + "with type of" + typeof el);
-
-//   return el;
-// }
-
 function getInputEl() {
   let userInputEl = document.getElementById("user-input-el").value.trim();
 
   const el = Number(userInputEl);
 
-  if (isNaN(el)) {
+  if (userInputEl === "") {
+    console.log("Invalid input: empty string");
+    return null;
+  } else if (isNaN(el)) {
     console.log("Invalid input: not a number");
     return null;
   }
@@ -125,11 +115,15 @@ function saveInput(data) {
 
 function runBinarySearch(event) {
   event.preventDefault();
-  let arr = getInputArr();
-  mergeSort(arr, 0, arr.length - 1);
 
+  let arr = getInputArr();
   let el = getInputEl();
 
+  if (arr.length === 0 || el === null) {
+    return;
+  }
+
+  mergeSort(arr, 0, arr.length - 1);
   binarySearch(arr, el);
 
   let index = binarySearch(arr, el);
