@@ -1,14 +1,16 @@
-let iterations = [];
+//?  ⬇️ mix algo bubble skalian swapp logic
+
+let iterations = []; //? ini arr untuk nyimpen steps nya
 let currentStep = 0;
 
 function bubbleSort(arr) {
   const len = arr.length;
-  iterations = []; // Reset iterations
+  iterations = []; // ? reset dari awal
   for (let i = 0; i < len - 1; i++) {
-    const currentI = i; // Capture the current value of i
+    const currentI = i; //? simpen i untuk state tersebut
     for (let j = 0; j < len - i - 1; j++) {
-      const currentJ = j; // Capture the current value of j
-      // Record the state before any swap, along with indices
+      const currentJ = j; //?  simpen  j untuk state
+      // ? SAVE si arr nya jdi objek, both i dan j ny jga (swapped cman bonus supaya nanti ketauan)
       iterations.push({
         array: arr.slice(),
         i: currentI,
@@ -16,12 +18,9 @@ function bubbleSort(arr) {
         swapped: false,
       });
       if (arr[j] > arr[j + 1]) {
-        // Capture the values and indices to be swapped
         const swappedIndices = [j, j + 1];
         const swappedValues = [arr[j], arr[j + 1]];
-        // Perform the swap
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-        // Record the state after swap
         iterations.push({
           array: arr.slice(),
           i: currentI,
@@ -33,7 +32,7 @@ function bubbleSort(arr) {
       }
     }
   }
-  // Record the final sorted array
+  //? nge save array akhir
   iterations.push({
     array: arr.slice(),
     i: null,
@@ -80,21 +79,30 @@ function displayCurrentStep() {
     const { array, i, j, swapped, swappedIndices, swappedValues } =
       iterations[currentStep];
 
-    const arrayDisplay = array
-      .map((num, index) => {
-        if (index === j || index === j + 1) {
-          // Highlight the elements being compared
-          return `<span class="highlight">${num}</span>`;
-        } else {
-          return num;
-        }
-      })
-      .join(", ");
+    let arrayDisplay;
+
+    if (i === null && j === null) {
+      //? array slesai, ditandaain sama class sendiri, beda warna
+      arrayDisplay = array
+        .map((num) => `<span class="sorted">${num}</span>`)
+        .join(", ");
+    } else {
+      //? array msih di "compare" (display) ,  ini juga sama di warna
+      arrayDisplay = array
+        .map((num, index) => {
+          if (index === j || index === j + 1) {
+            //? ⬇️ bedany ini cman 2 element yg lgi di compare di highlight
+            return `<span class="highlight">${num}</span>`;
+          } else {
+            return num;
+          }
+        })
+        .join(", ");
+    }
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
     document.getElementById("user-array").innerHTML = `Step ${currentStep + 1}`;
 
-    // Display the outer loop index
     let outerLoopInfo;
     if (i !== null) {
       outerLoopInfo = `Outer Loop (i): ${i}`;
@@ -103,7 +111,6 @@ function displayCurrentStep() {
     }
     document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
-    // Display the inner loop index
     let innerLoopInfo;
     if (j !== null) {
       innerLoopInfo = `Inner Loop (j): ${j}`;
@@ -112,18 +119,16 @@ function displayCurrentStep() {
     }
     document.getElementById("inner-loop-info").innerText = innerLoopInfo;
 
-    // Update the status-info element with swap details
     const statusInfoElement = document.getElementById("status-info");
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
-      statusInfoElement.innerText = `Swapped numbers at [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+      statusInfoElement.innerText = `Swapped elements at  [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
     } else {
       statusInfoElement.innerText = "";
     }
   }
 
-  // Disable buttons at boundaries
   document.getElementById("previous-btn").disabled = currentStep === 0;
   document.getElementById("next-btn").disabled =
     currentStep === iterations.length - 1;
@@ -165,11 +170,11 @@ function checkInput() {
   const playBtn = document.getElementById("play-btn");
 
   if (inputArray !== "") {
-    instructions.innerText = "Now click the play button!";
+    instructions.innerText = "Now clickk the play button!";
     playBtn.style.animation = "colorCycle 1s infinite";
     userArray.innerText = "";
   } else {
-    instructions.innerText = "Fill your array!";
+    instructions.innerText = "Fill ur array!";
     playBtn.style.animation = "none";
     userArray.innerText = "";
   }
@@ -179,13 +184,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputArrayField = document.getElementById("user-input-array");
   inputArrayField.addEventListener("input", handleInputChange);
 
-  // Bind next and previous buttons
   const nextBtn = document.getElementById("next-btn");
   const previousBtn = document.getElementById("previous-btn");
   nextBtn.addEventListener("click", nextStep);
   previousBtn.addEventListener("click", previousStep);
 
-  // Bind play button
   const playBtn = document.getElementById("play-btn");
   playBtn.addEventListener("click", runBubbleSort);
 });
