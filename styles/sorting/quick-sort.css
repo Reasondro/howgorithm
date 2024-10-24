@@ -112,21 +112,9 @@
   color: var(--color-white-600);
 }
 
-.pivot {
-  color: blue;
-  font-weight: bold;
-}
-
 .highlight {
   animation: colorCycle 1s infinite;
   font-weight: bold;
-}
-.swapped {
-  color: green;
-}
-
-.active {
-  background-color: wheat;
 }
 
 .sorted {

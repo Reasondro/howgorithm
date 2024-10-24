@@ -13,7 +13,7 @@
   />
   <link rel="stylesheet" href="/styles/shared.css" />
   <link rel="stylesheet" href="/styles/lab.css" />
-  <link rel="stylesheet" href="/styles/sorting/bubble-sort.css" />
+  <link rel="stylesheet" href="/styles/sorting/quick-sort.css" />
   <link rel="icon" href="icons/favicon.ico" />
   <body>
     <header id="main-header">
@@ -82,7 +82,7 @@
       <div id="grid-container">
         <section class="item1">
           <div id="overview-content">
-            <h1>Bubble Sort</h1>
+            <h1>Quick Sort</h1>
             <p>
               One major practical drawback is its O ( b d ) {\displaystyle
               O(b^{d})} space complexity where d is the depth of the solution
@@ -110,7 +110,7 @@
           <p id="status-info"></p>
         </section>
         <section class="item4">
-          <form onsubmit="runBubbleSort(event)">
+          <form onsubmit="runQuickSort(event)">
             <div id="user-input-array-wrapper">
               <label for="user-input-array"> </label>
               <input
@@ -200,6 +200,6 @@
       </div>
     </main>
     <footer id="main-footer"><h1>This is a Footer</h1></footer>
-    <script src="/modules/sorting/bubble-sort.js"></script>
+    <script src="/modules/sorting/quick-sort.js"></script>
   </body>
 </html>
