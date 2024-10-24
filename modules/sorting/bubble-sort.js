@@ -101,7 +101,7 @@ function displayCurrentStep() {
     }
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
-    document.getElementById("user-array").innerHTML = `Step ${currentStep + 1}`;
+    document.getElementById("steps").innerHTML = `Step ${currentStep + 1}`;
     const statusInfoElement = document.getElementById("status-info");
 
     let outerLoopInfo;
@@ -168,7 +168,7 @@ function checkInput() {
   const inputArray = document.getElementById("user-input-array").value.trim();
   const instructions = document.getElementById("user-instructions");
 
-  const userArray = document.getElementById("user-array");
+  const steps = document.getElementById("steps");
   const playBtn = document.getElementById("play-btn");
 
   const outerLoopInfo = document.getElementById("outer-loop-info");
@@ -177,7 +177,7 @@ function checkInput() {
     //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
     instructions.innerText = "Now click the play button!!!!";
     playBtn.style.animation = "colorCycle 1s infinite";
-    userArray.innerText = "";
+    steps.innerText = "";
     outerLoopInfo.innerText = "";
   } else {
     //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
@@ -186,7 +186,7 @@ function checkInput() {
     playBtn.style.animation = "none";
     outerLoopInfo.innerText = "";
 
-    userArray.innerText = "";
+    steps.innerText = "";
   }
 }
 

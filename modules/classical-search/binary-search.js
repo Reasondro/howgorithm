@@ -133,8 +133,15 @@ function runBinarySearch(event) {
   if (arr.length === 0 || target === null) {
     document.getElementById("user-instructions").innerText =
       "Please fill both inputs correctly.";
+    document.getElementById("steps").innerText = "";
+    document.getElementById("index-info").innerText = "";
+    document.getElementById("result").innerText = "";
+    document.getElementById("status-info").innerText = "";
+    document.getElementById("play-btn").style.animation = "none";
+
     return;
   }
+  document.getElementById("user-instructions").innerText = "";
 
   mergeSort(arr, 0, arr.length - 1); // Ensure the array is sorted
 
@@ -146,9 +153,6 @@ function runBinarySearch(event) {
   const playBtn = document.getElementById("play-btn");
 
   if (index === -1) {
-    document.getElementById(
-      "user-instructions"
-    ).innerHTML = `Element not found in your array.`;
     playBtn.style.animation = "none";
   } else {
     document.getElementById("user-instructions").innerHTML = "";
@@ -160,17 +164,24 @@ function displayCurrentStep() {
   if (currentStep >= 0 && currentStep < iterations.length) {
     const { array, l, r, mid, comparison } = iterations[currentStep];
 
+    // Update the steps display
+    document.getElementById("steps").innerText = `Step ${currentStep + 1}`;
+
     let arrayDisplay = array
       .map((num, index) => {
         let classes = [];
+
         if (index === mid) {
           classes.push("mid");
         }
-        if (index === l) {
-          classes.push("left");
+        if (index >= l && index <= r) {
+          classes.push("active-range");
+        } else {
+          classes.push("inactive");
         }
-        if (index === r) {
-          classes.push("right");
+        // Add 'found' class if the element is found
+        if (comparison === "found" && index === mid) {
+          classes.push("found");
         }
         return `<span class="${classes.join(" ")}">${num}</span>`;
       })
@@ -191,11 +202,11 @@ function displayCurrentStep() {
 
     document.getElementById("status-info").innerText = statusMessage;
 
-    let indicesInfo = `Left (l): ${l}, Right (r): ${r}`;
+    let indexInfo = `Left (l): ${l}, Right (r): ${r}`;
     if (mid !== null) {
-      indicesInfo += `, Mid: ${mid}`;
+      indexInfo += `, Mid: ${mid}`;
     }
-    document.getElementById("indices-info").innerText = indicesInfo;
+    document.getElementById("index-info").innerText = indexInfo;
   }
 
   // Disable buttons at boundaries
@@ -239,20 +250,23 @@ function checkBothInputs() {
 
   const playBtn = document.getElementById("play-btn");
 
-  if (inputArray !== "" && inputEl !== "") {
-    instructions.innerText = "Now click the play button!";
-    playBtn.style.animation = "colorCycle 1s infinite";
-    // Clear previous results
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("indices-info").innerText = "";
-    document.getElementById("status-info").innerText = "";
-  } else {
+  if (inputArray === "" && inputEl === "" && instructions === "") {
     instructions.innerText = "Please fill both inputs.";
     playBtn.style.animation = "none";
-    // Clear previous results
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("indices-info").innerText = "";
     document.getElementById("status-info").innerText = "";
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("index-info").innerText = "";
+  } else if (inputArray !== "" && inputEl !== "") {
+    // instructions.innerText = "Now click the play button!";
+    playBtn.style.animation = "colorCycle 1s infinite";
+    // document.getElementById("steps").innerText = "";
+  } else {
+    // Clear previous results
+    // playBtn.style.animation = "none";
+    // document.getElementById("result").innerHTML = "";
+    // document.getElementById("index-info").innerText = "";
+    // document.getElementById("status-info").innerText = "";
+    // document.getElementById("steps").innerText = "";
   }
 }
 

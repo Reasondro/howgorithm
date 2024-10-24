@@ -182,7 +182,7 @@ function displayCurrentStep() {
       .join(", ");
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
-    document.getElementById("user-array").innerHTML = `Step ${currentStep + 1}`;
+    document.getElementById("steps").innerText = `Step ${currentStep + 1}`;
     const statusInfoElement = document.getElementById("status-info");
 
     if (message) {

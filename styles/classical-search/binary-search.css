@@ -64,7 +64,6 @@
 /* Elements within the current search range */
 .active-range {
   color: wheat;
-  text-decoration: underline;
 }
 
 /* Middle element being compared */
@@ -86,7 +85,7 @@
 }
 
 .found {
-  animation: colorCycleAccent 1s infinite;
+  animation: colorCycleAccent 1s infinite !important;
 }
 
 @keyframes colorCycle {
