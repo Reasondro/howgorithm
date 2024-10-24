@@ -117,6 +117,7 @@ function getInputEl() {
 }
 
 function runBinarySearch(event) {
+  iterations = []; //! INI SUMPAH BUAT NGE BUG, AAAAAAAAAAAAAAAAAAA
   event.preventDefault();
 
   let arr = getInputArr();
