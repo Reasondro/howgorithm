@@ -226,17 +226,6 @@ a {
   color: var(--color-white-600);
 }
 
-@media (max-width: 1800px) {
-  html {
-    --max-width: 85rem;
-  }
-
-  #main-header {
-    margin: 0 0 1.25rem 0;
-  }
-}
-
-/* Hero Section */
 #hero {
   display: flex;
   align-items: center;
@@ -276,7 +265,6 @@ a {
   height: auto;
 }
 
-/* Features Section */
 #features {
   padding: 50px;
   text-align: center;
@@ -369,4 +357,14 @@ a {
 #motto h2 {
   font-size: 2.5em;
   margin-bottom: 20px;
+}
+
+@media (max-width: 1800px) {
+  html {
+    --max-width: 85rem;
+  }
+
+  #main-header {
+    margin: 0 0 1.25rem 0;
+  }
 }

@@ -152,6 +152,21 @@
     height: 15rem;
   }
 
+  .item2 #guide {
+    margin: 0;
+    font-size: 2rem;
+    width: 100%;
+    height: 25%;
+    background-color: wheat;
+  }
+
+  .item2 p {
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
   #overview-content h1 {
     font-size: 3rem;
   }
