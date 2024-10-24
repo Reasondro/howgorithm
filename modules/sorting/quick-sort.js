@@ -149,21 +149,30 @@ function displayCurrentStep() {
     let arrayDisplay = array
       .map((num, index) => {
         let classes = [];
-        if (index === pivotIndex) {
-          classes.push("pivot");
+
+        if (low === null && high === null) {
+          // Sorting is complete, add 'sorted' class to all elements
+          classes.push("sorted");
+        } else {
+          // Sorting is in progress
+          if (index === pivotIndex) {
+            classes.push("pivot");
+          }
+          if (index === j) {
+            classes.push("highlight"); // Current element being compared
+          }
+          if (
+            swapped &&
+            swappedIndices &&
+            (index === swappedIndices[0] || index === swappedIndices[1])
+          ) {
+            classes.push("swapped");
+          }
+          if (index >= low && index <= high) {
+            classes.push("active");
+          }
         }
-        if (index === j) {
-          classes.push("highlight"); //? highlight for current element
-        }
-        if (
-          swapped &&
-          (index === swappedIndices[0] || index === swappedIndices[1])
-        ) {
-          classes.push("swapped");
-        }
-        if (index >= low && index <= high) {
-          classes.push("active");
-        }
+
         let classString = classes.join(" ");
         return `<span class="${classString}">${num}</span>`;
       })
@@ -183,13 +192,24 @@ function displayCurrentStep() {
       statusInfoElement.innerText = "Comparing";
     }
 
-    let outerLoopInfo = `Low: ${low !== null ? low : ""}, High: ${
-      high !== null ? high : ""
-    }`;
-    document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+    // Update loop info based on sorting status
+    if (low === null && high === null) {
+      // Sorting is complete
+      document.getElementById("outer-loop-info").innerText =
+        "Finished computing";
+      document.getElementById("inner-loop-info").innerText = "";
+    } else {
+      // Sorting is in progress
+      let outerLoopInfo = `Low: ${low !== null ? low : ""}, High: ${
+        high !== null ? high : ""
+      }`;
+      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
-    let innerLoopInfo = `i: ${i !== null ? i : ""}, j: ${j !== null ? j : ""}`;
-    document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+      let innerLoopInfo = `i: ${i !== null ? i : ""}, j: ${
+        j !== null ? j : ""
+      }`;
+      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+    }
   }
 
   document.getElementById("previous-btn").disabled = currentStep === 0;

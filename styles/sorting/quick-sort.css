@@ -112,6 +112,19 @@
   color: var(--color-white-600);
 }
 
+.swapped {
+  color: green;
+}
+
+.active {
+  color: wheat;
+}
+
+.pivot {
+  color: chocolate;
+  font-weight: bold;
+}
+
 .highlight {
   animation: colorCycle 1s infinite;
   font-weight: bold;

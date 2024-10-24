@@ -123,7 +123,7 @@ function displayCurrentStep() {
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
-      statusInfoElement.innerText = `Swap [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+      statusInfoElement.innerText = `Swapped [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
     } else if (i === null) {
       statusInfoElement.innerText = "SORTED!";
     } else {
