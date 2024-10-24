@@ -89,18 +89,55 @@
   border: 1px solid var(--color-grey-400);
 }
 
-.item5 span {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 360px;
-  background-color: rgb(165, 42, 42);
-  transition: background-color 0.5s ease-in 0s, transform 3s ease-in 0s;
+#grid-container > .item5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0;
+  overflow: hidden;
 }
 
-.item5 span:hover {
-  background-color: rgb(231, 66, 66);
+.item5 #controller-container {
+  display: flex;
+  justify-content: center;
+  grid-column: 1/4;
+  background-color: var(--color-grey-600);
+  height: 100%;
+  align-items: center;
+  overflow: hidden;
+}
 
-  transform: rotate3d(1, 1, 1, 360deg) scale(2, 1);
+.item5 #controller-text {
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: var(--color-white-600);
+}
+
+.item5 button {
+  padding: 0;
+  margin: 0;
+  display: block;
+  height: 100%;
+  grid-row: 2/4;
+  border: none;
+  background-color: transparent;
+}
+
+.item5 button svg {
+  margin: 0;
+  width: 5rem;
+  padding: 1rem;
+  /* color: var(--color-white-600); */
+  color: var(--color-primary);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in 0s, color 0.1s ease-in 0s;
+}
+.item5 button :hover {
+  background-color: var(--color-primary);
+  color: var(--color-white-600);
 }
 
 @media (max-width: 1800px) {

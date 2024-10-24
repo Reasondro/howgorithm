@@ -42,9 +42,7 @@
             BINARY SEARCH</a
           >
         </li>
-        <li class="algo-type">
-          <a href="/pages/local-search/a-star.html"> LOCAL SEARCH </a>
-        </li>
+
         <li class="algo-type">
           <a href="/pages/sorting/bubble-sort.html"> BUBBLE SORT </a>
         </li>
@@ -96,11 +94,12 @@
           <p id="user-instructions">
             <em> Fill the inputs below! </em>
           </p>
-          <p id="user-array"></p>
-          <p id="user-el"></p>
+          <p id="steps"></p>
+          <p id="indices-info"></p>
         </section>
         <section class="item3">
           <p id="result"></p>
+          <p id="status-info"></p>
         </section>
         <section class="item4">
           <form onsubmit="runBinarySearch(event)">
@@ -142,9 +141,62 @@
           </form>
         </section>
         <section class="item5">
-          <h1>{Visualisation}</h1>
+          <div id="controller-container">
+            <h2 id="controller-text">Controller</h2>
+          </div>
+          <button
+            type="button"
+            onclick=""
+            aria-label="Previous"
+            id="previous-btn"
+            disabled
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                d="M9.195 18.44c1.25.714 2.805-.189 2.805-1.629v-2.34l6.945 3.968c1.25.715 2.805-.188 2.805-1.628V8.69c0-1.44-1.555-2.343-2.805-1.628L12 11.029v-2.34c0-1.44-1.555-2.343-2.805-1.628l-7.108 4.061c-1.26.72-1.26 2.536 0 3.256l7.108 4.061Z"
+              />
+            </svg>
+          </button>
+          <button type="button" onclick="" aria-label="Eye" id="eye-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+              <path
+                fill-rule="evenodd"
+                d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onclick=""
+            aria-label="Next"
+            id="next-btn"
+            disabled
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                d="M5.055 7.06C3.805 6.347 2.25 7.25 2.25 8.69v8.122c0 1.44 1.555 2.343 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.343 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256l-7.108-4.061C13.555 6.346 12 7.249 12 8.689v2.34L5.055 7.061Z"
+              />
+            </svg>
+          </button>
 
-          <span></span>
+          <!-- <span></span> -->
         </section>
       </div>
     </main>

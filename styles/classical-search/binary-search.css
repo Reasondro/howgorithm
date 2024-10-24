@@ -1,3 +1,8 @@
+.item3 > #status-info {
+  font-size: 2.5rem;
+  animation: colorCycleAccent 1s infinite;
+}
+
 #grid-container .item4 {
   padding: 0rem 15rem;
 }
@@ -56,6 +61,34 @@
   animation: none;
 }
 
+/* Elements within the current search range */
+.active-range {
+  color: wheat;
+  text-decoration: underline;
+}
+
+/* Middle element being compared */
+.mid {
+  color: red;
+  font-weight: bold;
+}
+
+/* Elements outside the current search range */
+.inactive {
+  color: lightgray;
+}
+
+/* If an element is both mid and active-range */
+.mid.active-range {
+  color: aquamarine;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.found {
+  animation: colorCycleAccent 1s infinite;
+}
+
 @keyframes colorCycle {
   0% {
     color: var(--color-red-500);
@@ -89,5 +122,17 @@
   }
   100% {
     background-color: var(--color-primary);
+  }
+}
+
+@keyframes colorCycleAccent {
+  0% {
+    color: var(--color-accent-100);
+  }
+  50% {
+    color: var(--color-accent-300);
+  }
+  100% {
+    color: var(--color-accent-100);
   }
 }

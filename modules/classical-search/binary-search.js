@@ -1,12 +1,4 @@
-// window.onload = function () {
-//   let storedInput = localStorage.getItem("savedUserInputBinary");
-//   if (storedInput) {
-//     document.getElementById("result").innerHTML = "Cached array:" + storedInput;
-//   }
-// };
-
-//? utils (shitty type module bug can't make me import stuffs)
-// ? Merge Sort CREDITS TO GEEKSFORGEES. GOATED website
+//? Utils (merge sort for sorting the array)
 function merge(arr, left, mid, right) {
   const n1 = mid - left + 1;
   const n2 = right - mid;
@@ -59,22 +51,46 @@ function mergeSort(arr, left, right) {
   merge(arr, left, mid, right);
 }
 
+let iterations = [];
+let currentStep = 0;
+
 function binarySearch(arr, target) {
   let l = 0;
   let r = arr.length - 1;
+  iterations = []; // Reset iterations
 
   while (l <= r) {
     const mid = Math.floor((l + r) / 2);
 
+    // Record the current state
+    iterations.push({
+      array: arr.slice(),
+      l: l,
+      r: r,
+      mid: mid,
+      comparison:
+        arr[mid] === target ? "found" : arr[mid] < target ? "less" : "greater",
+    });
+
     if (arr[mid] === target) {
       return mid;
     } else if (arr[mid] < target) {
-      l = mid + 1; //? l piondah ke kanan MID, karena masih MID lebih kecil dari target
+      l = mid + 1;
     } else {
-      r = mid - 1; //? r pindah ke kiri MID, karena masih MID lebih besar dari target
+      r = mid - 1;
     }
   }
-  return -1; //? ya kalo gaaad target
+
+  // Record the final state when not found
+  iterations.push({
+    array: arr.slice(),
+    l: l,
+    r: r,
+    mid: null,
+    comparison: "not found",
+  });
+
+  return -1;
 }
 
 function getInputArr() {
@@ -86,7 +102,7 @@ function getInputArr() {
     .map(Number)
     .filter((num) => !isNaN(num));
 
-  console.log("Got: " + arrNum + "with type of" + typeof arrNum);
+  console.log("Got: " + arrNum + " with type of " + typeof arrNum);
 
   return arrNum;
 }
@@ -108,42 +124,98 @@ function getInputEl() {
   return el;
 }
 
-function saveInput(data) {
-  const savedData = data;
-  localStorage.setItem("savedUserInputBinary", savedData);
-}
-
 function runBinarySearch(event) {
   event.preventDefault();
 
   let arr = getInputArr();
-  let el = getInputEl();
+  let target = getInputEl();
 
-  if (arr.length === 0 || el === null) {
+  if (arr.length === 0 || target === null) {
+    document.getElementById("user-instructions").innerText =
+      "Please fill both inputs correctly.";
     return;
   }
 
-  mergeSort(arr, 0, arr.length - 1);
-  binarySearch(arr, el);
+  mergeSort(arr, 0, arr.length - 1); // Ensure the array is sorted
 
-  let index = binarySearch(arr, el);
-  console.log("Found at index:" + index);
-  document.getElementById("user-array").innerHTML = `Your array: [${arr}] `;
-  document.getElementById("user-el").innerHTML = `Your element: ${el} `;
+  const index = binarySearch(arr, target);
+
+  currentStep = 0;
+  displayCurrentStep();
+
   const playBtn = document.getElementById("play-btn");
 
   if (index === -1) {
     document.getElementById(
       "user-instructions"
-    ).innerHTML = `Element does not exist in your array `;
+    ).innerHTML = `Element not found in your array.`;
     playBtn.style.animation = "none";
-    return;
+  } else {
+    document.getElementById("user-instructions").innerHTML = "";
+    playBtn.style.animation = "none";
   }
-  document.getElementById("user-instructions").innerHTML = "";
-  document.getElementById(
-    "result"
-  ).innerHTML = ` ${el} located at index ${index} `;
-  playBtn.style.animation = "none";
+}
+
+function displayCurrentStep() {
+  if (currentStep >= 0 && currentStep < iterations.length) {
+    const { array, l, r, mid, comparison } = iterations[currentStep];
+
+    let arrayDisplay = array
+      .map((num, index) => {
+        let classes = [];
+        if (index === mid) {
+          classes.push("mid");
+        }
+        if (index === l) {
+          classes.push("left");
+        }
+        if (index === r) {
+          classes.push("right");
+        }
+        return `<span class="${classes.join(" ")}">${num}</span>`;
+      })
+      .join(", ");
+
+    document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
+
+    let statusMessage = "";
+    if (comparison === "found") {
+      statusMessage = `Element found at index ${mid}.`;
+    } else if (comparison === "less") {
+      statusMessage = `Target is greater than ${array[mid]}. Moving right.`;
+    } else if (comparison === "greater") {
+      statusMessage = `Target is less than ${array[mid]}. Moving left.`;
+    } else if (comparison === "not found") {
+      statusMessage = `Element not found in the array.`;
+    }
+
+    document.getElementById("status-info").innerText = statusMessage;
+
+    let indicesInfo = `Left (l): ${l}, Right (r): ${r}`;
+    if (mid !== null) {
+      indicesInfo += `, Mid: ${mid}`;
+    }
+    document.getElementById("indices-info").innerText = indicesInfo;
+  }
+
+  // Disable buttons at boundaries
+  document.getElementById("previous-btn").disabled = currentStep === 0;
+  document.getElementById("next-btn").disabled =
+    currentStep === iterations.length - 1;
+}
+
+function nextStep() {
+  if (currentStep < iterations.length - 1) {
+    currentStep++;
+    displayCurrentStep();
+  }
+}
+
+function previousStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    displayCurrentStep();
+  }
 }
 
 function handleInputChange(event) {
@@ -165,20 +237,22 @@ function checkBothInputs() {
   const inputEl = document.getElementById("user-input-el").value.trim();
   const instructions = document.getElementById("user-instructions");
 
-  const userArray = document.getElementById("user-array");
-  const userEl = document.getElementById("user-el");
   const playBtn = document.getElementById("play-btn");
 
   if (inputArray !== "" && inputEl !== "") {
     instructions.innerText = "Now click the play button!";
     playBtn.style.animation = "colorCycle 1s infinite";
-    userArray.innerText = "";
-    userEl.innerText = "";
+    // Clear previous results
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("indices-info").innerText = "";
+    document.getElementById("status-info").innerText = "";
   } else {
     instructions.innerText = "Please fill both inputs.";
     playBtn.style.animation = "none";
-    userArray.innerText = "";
-    userEl.innerText = "";
+    // Clear previous results
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("indices-info").innerText = "";
+    document.getElementById("status-info").innerText = "";
   }
 }
 
@@ -188,4 +262,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inputArrayField.addEventListener("input", handleInputChange);
   inputElField.addEventListener("input", handleInputChange);
+
+  // Bind play button
+  const playBtn = document.getElementById("play-btn");
+  playBtn.addEventListener("click", runBinarySearch);
+
+  // Bind next and previous buttons
+  const nextBtn = document.getElementById("next-btn");
+  const previousBtn = document.getElementById("previous-btn");
+  nextBtn.addEventListener("click", nextStep);
+  previousBtn.addEventListener("click", previousStep);
 });

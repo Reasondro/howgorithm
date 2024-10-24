@@ -256,6 +256,7 @@ function checkInput() {
   const playBtn = document.getElementById("play-btn");
 
   const outerLoopInfo = document.getElementById("outer-loop-info");
+  const innerLoopInfo = document.getElementById("inner-loop-info");
 
   if (inputArray !== "") {
     //? reset messages
@@ -263,10 +264,12 @@ function checkInput() {
     playBtn.style.animation = "colorCycle 1s infinite";
     userArray.innerText = "";
     outerLoopInfo.innerText = "";
+    innerLoopInfo.innerText = "";
   } else {
     instructions.innerText = "Fill your array!";
     playBtn.style.animation = "none";
     outerLoopInfo.innerText = "";
+    innerLoopInfo.innerText = "";
     userArray.innerText = "";
   }
 }
