@@ -169,13 +169,21 @@ function checkInput() {
   const userArray = document.getElementById("user-array");
   const playBtn = document.getElementById("play-btn");
 
+  const outerLoopInfo = document.getElementById("outer-loop-info");
+
   if (inputArray !== "") {
-    instructions.innerText = "Now clickk the play button!";
+    //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
+    instructions.innerText = "Now click the play button!!!!";
     playBtn.style.animation = "colorCycle 1s infinite";
     userArray.innerText = "";
+    outerLoopInfo.innerText = "";
   } else {
-    instructions.innerText = "Fill ur array!";
+    //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
+
+    instructions.innerText = "Fill your array!";
     playBtn.style.animation = "none";
+    outerLoopInfo.innerText = "";
+
     userArray.innerText = "";
   }
 }
