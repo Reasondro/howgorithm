@@ -161,6 +161,9 @@ function displayCurrentStep() {
           if (index === j) {
             classes.push("highlight"); // Current element being compared
           }
+          if (index === i) {
+            classes.push("index-i"); // Highlight index i
+          }
           if (
             swapped &&
             swappedIndices &&

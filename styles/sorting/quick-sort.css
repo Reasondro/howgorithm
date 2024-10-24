@@ -2,8 +2,8 @@
   padding: 0rem 15rem;
 }
 
-.item3 #status-info {
-  font-size: 3rem;
+.item3 > #status-info {
+  font-size: 2.5rem;
   animation: colorCycleAccent 1s infinite;
 }
 
@@ -112,10 +112,6 @@
   color: var(--color-white-600);
 }
 
-.swapped {
-  color: green;
-}
-
 .active {
   color: wheat;
 }
@@ -127,6 +123,18 @@
 
 .highlight {
   animation: colorCycle 1s infinite;
+  font-weight: bold;
+}
+
+.index-i {
+  color: aquamarine;
+  font-weight: bold;
+}
+
+.highlight.swapped,
+.index-i.swapped {
+  animation: none;
+  color: greenyellow;
   font-weight: bold;
 }
 
