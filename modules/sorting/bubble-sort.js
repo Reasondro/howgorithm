@@ -102,12 +102,13 @@ function displayCurrentStep() {
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
     document.getElementById("user-array").innerHTML = `Step ${currentStep + 1}`;
+    const statusInfoElement = document.getElementById("status-info");
 
     let outerLoopInfo;
     if (i !== null) {
       outerLoopInfo = `Outer Loop (i): ${i}`;
     } else {
-      outerLoopInfo = "Sorting Complete";
+      outerLoopInfo = "";
     }
     document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
@@ -119,11 +120,12 @@ function displayCurrentStep() {
     }
     document.getElementById("inner-loop-info").innerText = innerLoopInfo;
 
-    const statusInfoElement = document.getElementById("status-info");
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
-      statusInfoElement.innerText = `Swapped numbers at  [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+      statusInfoElement.innerText = `Swap [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+    } else if (i === null) {
+      statusInfoElement.innerText = "SORTED!";
     } else {
       statusInfoElement.innerText = "";
     }
