@@ -5,7 +5,7 @@ let currentStep = 0;
 
 function bubbleSort(arr) {
   const len = arr.length;
-  iterations = []; // ? reset dari awal
+  iterations = []; // ? reset kumpulan steps/iterasi dari awal
   for (let i = 0; i < len - 1; i++) {
     const currentI = i; //? simpen i untuk state tersebut
     for (let j = 0; j < len - i - 1; j++) {
@@ -50,7 +50,7 @@ function getInputArr() {
     .map(Number)
     .filter((num) => !isNaN(num));
 
-  console.log("Got: " + arrNum + " with type of " + typeof arrNum);
+  console.log("Got: " + arrNum + " with type of " + typeof arrNum); //? buat debugging doang
 
   return arrNum;
 }
@@ -123,7 +123,7 @@ function displayCurrentStep() {
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
-      statusInfoElement.innerText = `Swapped elements at  [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+      statusInfoElement.innerText = `Swapped numbers at  [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
     } else {
       statusInfoElement.innerText = "";
     }
