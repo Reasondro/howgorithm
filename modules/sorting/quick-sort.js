@@ -31,7 +31,6 @@ function partition(arr, low, high) {
   const pivot = arr[high];
   let i = low - 1;
 
-  // Record the initial state before partitioning
   iterations.push({
     array: arr.slice(),
     low: low,
@@ -44,7 +43,6 @@ function partition(arr, low, high) {
   });
 
   for (let j = low; j <= high - 1; j++) {
-    // Record the comparison
     iterations.push({
       array: arr.slice(),
       low: low,
@@ -60,7 +58,6 @@ function partition(arr, low, high) {
       i++;
       [arr[i], arr[j]] = [arr[j], arr[i]];
 
-      // Record the swap
       iterations.push({
         array: arr.slice(),
         low: low,
@@ -76,10 +73,8 @@ function partition(arr, low, high) {
     }
   }
 
-  // Swap arr[i+1] and arr[high] (move pivot to correct position)
   [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
 
-  // Record the pivot swap
   iterations.push({
     array: arr.slice(),
     low: low,
@@ -121,6 +116,10 @@ function runQuickSort(event) {
     document.getElementById(
       "user-instructions"
     ).innerHTML = `Fill your array first `;
+    document.getElementById("result").innerText = "";
+    document.getElementById("status-info").innerText = "";
+    document.getElementById("steps").innerText = "";
+    document.getElementById("outer-loop-info").innerText = "";
     playBtn.style.animation = "none";
     return;
   }
@@ -151,18 +150,16 @@ function displayCurrentStep() {
         let classes = [];
 
         if (low === null && high === null) {
-          // Sorting is complete, add 'sorted' class to all elements
           classes.push("sorted");
         } else {
-          // Sorting is in progress
           if (index === pivotIndex) {
             classes.push("pivot");
           }
           if (index === j) {
-            classes.push("highlight"); // Current element being compared
+            classes.push("highlight");
           }
           if (index === i) {
-            classes.push("index-i"); // Highlight index i
+            classes.push("index-i");
           }
           if (
             swapped &&
@@ -195,14 +192,11 @@ function displayCurrentStep() {
       statusInfoElement.innerText = "Comparing";
     }
 
-    // Update loop info based on sorting status
     if (low === null && high === null) {
-      // Sorting is complete
       document.getElementById("outer-loop-info").innerText =
         "Finished computing";
       document.getElementById("inner-loop-info").innerText = "";
     } else {
-      // Sorting is in progress
       let outerLoopInfo = `Low: ${low !== null ? low : ""}, High: ${
         high !== null ? high : ""
       }`;
@@ -236,6 +230,7 @@ function previousStep() {
 
 function handleInputChange(event) {
   const inputField = event.target;
+  const steps = document.getElementById("steps").innerText;
 
   if (inputField.value.trim() !== "") {
     inputField.style.animation = "none";
@@ -252,25 +247,21 @@ function checkInput() {
   const inputArray = document.getElementById("user-input-array").value.trim();
   const instructions = document.getElementById("user-instructions");
 
-  const userArray = document.getElementById("user-array");
+  const steps = document.getElementById("steps");
   const playBtn = document.getElementById("play-btn");
 
   const outerLoopInfo = document.getElementById("outer-loop-info");
   const innerLoopInfo = document.getElementById("inner-loop-info");
 
-  if (inputArray !== "") {
-    //? reset messages
-    instructions.innerText = "Now click the play button!!!!";
+  if (inputArray !== "" && steps !== "") {
     playBtn.style.animation = "colorCycle 1s infinite";
-    userArray.innerText = "";
+  } else if (inputArray !== "") {
+    //? reset messages
+    playBtn.style.animation = "colorCycle 1s infinite";
     outerLoopInfo.innerText = "";
     innerLoopInfo.innerText = "";
-  } else {
-    instructions.innerText = "Fill your array!";
+  } else if (inputArray === "" && steps !== "") {
     playBtn.style.animation = "none";
-    outerLoopInfo.innerText = "";
-    innerLoopInfo.innerText = "";
-    userArray.innerText = "";
   }
 }
 

@@ -3,11 +3,9 @@ function merge(arr, left, mid, right) {
   const n1 = mid - left + 1;
   const n2 = right - mid;
 
-  // Create temp arrays
   const L = new Array(n1);
   const R = new Array(n2);
 
-  // Copy data to temp arrays L[] and R[]
   for (let i = 0; i < n1; i++) L[i] = arr[left + i];
   for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
@@ -15,7 +13,6 @@ function merge(arr, left, mid, right) {
     j = 0;
   let k = left;
 
-  // Merge the temp arrays back into arr[left..right]
   while (i < n1 && j < n2) {
     if (L[i] <= R[j]) {
       arr[k] = L[i];
@@ -27,14 +24,12 @@ function merge(arr, left, mid, right) {
     k++;
   }
 
-  // Copy the remaining elements of L[], if there are any
   while (i < n1) {
     arr[k] = L[i];
     i++;
     k++;
   }
 
-  // Copy the remaining elements of R[], if there are any
   while (j < n2) {
     arr[k] = R[j];
     j++;
@@ -57,12 +52,10 @@ let currentStep = 0;
 function binarySearch(arr, target) {
   let l = 0;
   let r = arr.length - 1;
-  iterations = []; // Reset iterations
 
   while (l <= r) {
     const mid = Math.floor((l + r) / 2);
 
-    // Record the current state
     iterations.push({
       array: arr.slice(),
       l: l,
@@ -81,7 +74,6 @@ function binarySearch(arr, target) {
     }
   }
 
-  // Record the final state when not found
   iterations.push({
     array: arr.slice(),
     l: l,
@@ -143,8 +135,6 @@ function runBinarySearch(event) {
   }
   document.getElementById("user-instructions").innerText = "";
 
-  mergeSort(arr, 0, arr.length - 1); // Ensure the array is sorted
-
   const index = binarySearch(arr, target);
 
   currentStep = 0;
@@ -164,7 +154,6 @@ function displayCurrentStep() {
   if (currentStep >= 0 && currentStep < iterations.length) {
     const { array, l, r, mid, comparison } = iterations[currentStep];
 
-    // Update the steps display
     document.getElementById("steps").innerText = `Step ${currentStep + 1}`;
 
     let arrayDisplay = array
@@ -179,7 +168,6 @@ function displayCurrentStep() {
         } else {
           classes.push("inactive");
         }
-        // Add 'found' class if the element is found
         if (comparison === "found" && index === mid) {
           classes.push("found");
         }
@@ -209,7 +197,6 @@ function displayCurrentStep() {
     document.getElementById("index-info").innerText = indexInfo;
   }
 
-  // Disable buttons at boundaries
   document.getElementById("previous-btn").disabled = currentStep === 0;
   document.getElementById("next-btn").disabled =
     currentStep === iterations.length - 1;
@@ -257,16 +244,9 @@ function checkBothInputs() {
     document.getElementById("result").innerHTML = "";
     document.getElementById("index-info").innerText = "";
   } else if (inputArray !== "" && inputEl !== "") {
-    // instructions.innerText = "Now click the play button!";
     playBtn.style.animation = "colorCycle 1s infinite";
-    // document.getElementById("steps").innerText = "";
-  } else {
-    // Clear previous results
-    // playBtn.style.animation = "none";
-    // document.getElementById("result").innerHTML = "";
-    // document.getElementById("index-info").innerText = "";
-    // document.getElementById("status-info").innerText = "";
-    // document.getElementById("steps").innerText = "";
+  } else if ((inputArray === "" || inputEl === "") && instructions !== "") {
+    playBtn.style.animation = "none";
   }
 }
 
@@ -277,11 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
   inputArrayField.addEventListener("input", handleInputChange);
   inputElField.addEventListener("input", handleInputChange);
 
-  // Bind play button
   const playBtn = document.getElementById("play-btn");
   playBtn.addEventListener("click", runBinarySearch);
 
-  // Bind next and previous buttons
   const nextBtn = document.getElementById("next-btn");
   const previousBtn = document.getElementById("previous-btn");
   nextBtn.addEventListener("click", nextStep);

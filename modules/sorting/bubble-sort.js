@@ -64,6 +64,10 @@ function runBubbleSort(event) {
     document.getElementById(
       "user-instructions"
     ).innerHTML = `Fill your array first `;
+    document.getElementById("result").innerText = "";
+    document.getElementById("status-info").innerText = "";
+    document.getElementById("steps").innerText = "";
+    document.getElementById("outer-loop-info").innerText = "";
     playBtn.style.animation = "none";
     return;
   }
@@ -173,20 +177,21 @@ function checkInput() {
 
   const outerLoopInfo = document.getElementById("outer-loop-info");
 
-  if (inputArray !== "") {
-    //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
-    instructions.innerText = "Now click the play button!!!!";
+  if (inputArray !== "" && steps !== "") {
     playBtn.style.animation = "colorCycle 1s infinite";
-    steps.innerText = "";
+  } else if (inputArray !== "") {
+    //? reset messages
+    // instructions.innerText = "Now click the play button!!!!";
+    playBtn.style.animation = "colorCycle 1s infinite";
+    // steps.innerText = "";
     outerLoopInfo.innerText = "";
-  } else {
-    //? reset message, entah knapa bbrapa hrus di reset manual (reformat nanti)
-
-    instructions.innerText = "Fill your array!";
+    innerLoopInfo.innerText = "";
+  } else if (inputArray === "" && steps !== "") {
+    // instructions.innerText = "Fill your array!";
     playBtn.style.animation = "none";
-    outerLoopInfo.innerText = "";
-
-    steps.innerText = "";
+    // outerLoopInfo.innerText = "";
+    // innerLoopInfo.innerText = "";
+    // steps.innerText = "";
   }
 }
 
