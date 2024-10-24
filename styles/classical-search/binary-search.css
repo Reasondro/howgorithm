@@ -140,4 +140,8 @@
   #grid-container .item4 {
     padding: 0rem 5rem;
   }
+
+  .item4 form input {
+    font-size: 1.2rem;
+  }
 }

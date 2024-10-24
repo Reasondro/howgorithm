@@ -131,3 +131,9 @@
     color: var(--color-accent-100);
   }
 }
+
+@media (max-width: 1800px) {
+  .item4 form input {
+    font-size: 1.2rem;
+  }
+}
