@@ -108,7 +108,7 @@ function displayCurrentStep() {
     if (i !== null) {
       outerLoopInfo = `Outer Loop (i): ${i}`;
     } else {
-      outerLoopInfo = "";
+      outerLoopInfo = "Finished computing";
     }
     document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
@@ -127,7 +127,7 @@ function displayCurrentStep() {
     } else if (i === null) {
       statusInfoElement.innerText = "SORTED!";
     } else {
-      statusInfoElement.innerText = "";
+      statusInfoElement.innerText = "COMPARING";
     }
   }
 
