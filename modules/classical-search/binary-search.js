@@ -1,4 +1,4 @@
-//? Utils (merge sort for sorting the array)
+//? Utils ( sort for sorting the array)
 function merge(arr, left, mid, right) {
   const n1 = mid - left + 1;
   const n2 = right - mid;
@@ -120,6 +120,7 @@ function runBinarySearch(event) {
   event.preventDefault();
 
   let arr = getInputArr();
+  mergeSort(arr, 0, arr.length - 1);
   let target = getInputEl();
 
   if (arr.length === 0 || target === null) {
