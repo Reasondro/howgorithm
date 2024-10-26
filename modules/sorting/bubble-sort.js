@@ -114,29 +114,31 @@ function displayCurrentStep() {
     const statusInfoElement = document.getElementById("status-info");
 
     let outerLoopInfo;
-    if (i !== null) {
-      outerLoopInfo = `Outer Loop (i): ${i}`;
-    } else {
-      outerLoopInfo = "Finished computing";
-    }
-    document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+
+    outerLoopInfo = `Outer Loop (i): [${i}]`;
 
     let innerLoopInfo;
-    if (j !== null) {
-      innerLoopInfo = `Inner Loop (j): ${j}`;
-    } else {
-      innerLoopInfo = "";
-    }
-    document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+
+    innerLoopInfo = `Inner Loop (j): [${j}]`;
 
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
       statusInfoElement.innerText = `Swapped [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
+      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+      document.getElementById("user-instructions").innerHTML =
+        "See the process below!";
     } else if (i === null) {
+      document.getElementById("user-instructions").innerText =
+        "Finished computing";
       statusInfoElement.innerText = "SORTED!";
     } else {
       statusInfoElement.innerText = "COMPARING";
+      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+      document.getElementById("user-instructions").innerHTML =
+        "See the process below!";
     }
   }
 

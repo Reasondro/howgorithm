@@ -64,6 +64,10 @@
   font-size: 2rem;
   font-weight: 400;
 }
+
+.item2 #user-instructions {
+  font-style: italic;
+}
 .item3 {
   grid-column-start: 1;
   grid-column-end: 3;

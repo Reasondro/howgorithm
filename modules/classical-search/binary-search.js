@@ -135,7 +135,6 @@ function runBinarySearch(event) {
 
     return;
   }
-  // document.getElementById("user-instructions").innerText = "See the process below";
 
   const index = binarySearch(arr, target);
 
@@ -193,11 +192,15 @@ function displayCurrentStep() {
 
     document.getElementById("status-info").innerText = statusMessage;
 
-    let indexInfo = `Left (l): ${l}, Right (r): ${r}`;
+    let indexInfo = `Left: [${l}], Right: [${r}]`;
     if (mid !== null) {
-      indexInfo += `, Mid: ${mid}`;
+      indexInfo += `, Mid: [${mid}]`;
     }
     document.getElementById("index-info").innerText = indexInfo;
+    if (comparison === "found" || comparison === "not found") {
+      document.getElementById("user-instructions").innerText =
+        "Finished computing";
+    }
   }
 
   document.getElementById("previous-btn").disabled = currentStep === 0;

@@ -198,17 +198,18 @@ function displayCurrentStep() {
     }
 
     if (low === null && high === null) {
-      document.getElementById("outer-loop-info").innerText =
+      document.getElementById("user-instructions").innerText =
         "Finished computing";
-      document.getElementById("inner-loop-info").innerText = "";
     } else {
-      let outerLoopInfo = `Low: ${low !== null ? low : ""}, High: ${
-        high !== null ? high : ""
+      document.getElementById("user-instructions").innerText =
+        "See the process below!";
+      let outerLoopInfo = `Low: ${low !== null ? `[${low}]` : ""}, High: ${
+        high !== null ? `[${high}]` : ""
       }`;
       document.getElementById("outer-loop-info").innerText = outerLoopInfo;
 
-      let innerLoopInfo = `i: ${i !== null ? i : ""}, j: ${
-        j !== null ? j : ""
+      let innerLoopInfo = `i: ${i !== null ? `[${i}]` : ""}, j: ${
+        j !== null ? `[${j}]` : ""
       }`;
       document.getElementById("inner-loop-info").innerText = innerLoopInfo;
     }
