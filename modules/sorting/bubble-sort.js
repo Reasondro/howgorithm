@@ -56,6 +56,8 @@ function getInputArr() {
 }
 
 function runBubbleSort(event) {
+  iterations = []; //! INI SUMPAH BUAT NGE BUG, AAAAAAAAAAAAAAAAAAA
+
   event.preventDefault();
   let arr = getInputArr();
   const playBtn = document.getElementById("play-btn");
@@ -66,7 +68,9 @@ function runBubbleSort(event) {
     ).innerHTML = `Fill your array first `;
     document.getElementById("result").innerText = "";
     document.getElementById("status-info").innerText = "";
+
     document.getElementById("steps").innerText = "";
+    document.getElementById("inner-loop-info").innerText = "";
     document.getElementById("outer-loop-info").innerText = "";
     playBtn.style.animation = "none";
     return;
@@ -74,7 +78,8 @@ function runBubbleSort(event) {
   bubbleSort(arr);
   currentStep = 0;
   displayCurrentStep();
-  document.getElementById("user-instructions").innerHTML = "";
+  document.getElementById("user-instructions").innerHTML =
+    "See the process below!";
   playBtn.style.animation = "none";
 }
 
@@ -176,6 +181,7 @@ function checkInput() {
   const playBtn = document.getElementById("play-btn");
 
   const outerLoopInfo = document.getElementById("outer-loop-info");
+  const innerLoopInfo = document.getElementById("inner-loop-info");
 
   if (inputArray !== "" && steps !== "") {
     playBtn.style.animation = "colorCycle 1s infinite";

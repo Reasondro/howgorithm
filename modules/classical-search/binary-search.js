@@ -135,7 +135,7 @@ function runBinarySearch(event) {
 
     return;
   }
-  document.getElementById("user-instructions").innerText = "";
+  // document.getElementById("user-instructions").innerText = "See the process below";
 
   const index = binarySearch(arr, target);
 
@@ -147,7 +147,8 @@ function runBinarySearch(event) {
   if (index === -1) {
     playBtn.style.animation = "none";
   } else {
-    document.getElementById("user-instructions").innerHTML = "";
+    document.getElementById("user-instructions").innerHTML =
+      "See the process below!";
     playBtn.style.animation = "none";
   }
 }

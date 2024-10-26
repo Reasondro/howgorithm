@@ -108,6 +108,8 @@ function getInputArr() {
 }
 
 function runQuickSort(event) {
+  iterations = []; //! INI SUMPAH BUAT NGE BUG, AAAAAAAAAAAAAAAAAAA
+
   event.preventDefault();
   let arr = getInputArr();
   const playBtn = document.getElementById("play-btn");
@@ -119,6 +121,8 @@ function runQuickSort(event) {
     document.getElementById("result").innerText = "";
     document.getElementById("status-info").innerText = "";
     document.getElementById("steps").innerText = "";
+    document.getElementById("inner-loop-info").innerText = "";
+
     document.getElementById("outer-loop-info").innerText = "";
     playBtn.style.animation = "none";
     return;
@@ -126,7 +130,8 @@ function runQuickSort(event) {
   quickSort(arr);
   currentStep = 0;
   displayCurrentStep();
-  document.getElementById("user-instructions").innerHTML = "";
+  document.getElementById("user-instructions").innerHTML =
+    "See the process below!";
   playBtn.style.animation = "none";
 }
 
