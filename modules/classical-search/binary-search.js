@@ -182,11 +182,19 @@ function displayCurrentStep() {
     let statusMessage = "";
     if (comparison === "found") {
       statusMessage = `Element found at index ${mid}.`;
+      document.getElementById("user-instructions").innerText =
+        "Finished computing";
     } else if (comparison === "less") {
       statusMessage = `Target is greater than ${array[mid]}. Moving right.`;
+      document.getElementById("user-instructions").innerText =
+        "See the process below!";
     } else if (comparison === "greater") {
       statusMessage = `Target is less than ${array[mid]}. Moving left.`;
+      document.getElementById("user-instructions").innerText =
+        "See the process below!";
     } else if (comparison === "not found") {
+      document.getElementById("user-instructions").innerText =
+        "Finished computing";
       statusMessage = `Element not found in the array.`;
     }
 
@@ -197,10 +205,6 @@ function displayCurrentStep() {
       indexInfo += `, Mid: [${mid}]`;
     }
     document.getElementById("index-info").innerText = indexInfo;
-    if (comparison === "found" || comparison === "not found") {
-      document.getElementById("user-instructions").innerText =
-        "Finished computing";
-    }
   }
 
   document.getElementById("previous-btn").disabled = currentStep === 0;
