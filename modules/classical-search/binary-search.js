@@ -1,3 +1,6 @@
+let iterations = [];
+let currentStep = 0;
+
 //? Utils ( sort for sorting the array)
 function merge(arr, left, mid, right) {
   const n1 = mid - left + 1;
@@ -45,9 +48,6 @@ function mergeSort(arr, left, right) {
   mergeSort(arr, mid + 1, right);
   merge(arr, left, mid, right);
 }
-
-let iterations = [];
-let currentStep = 0;
 
 function binarySearch(arr, target) {
   let l = 0;
@@ -124,6 +124,8 @@ function runBinarySearch(event) {
   mergeSort(arr, 0, arr.length - 1);
   let target = getInputEl();
 
+  const playBtn = document.getElementById("play-btn");
+
   if (arr.length === 0 || target === null) {
     document.getElementById("user-instructions").innerText =
       "Please fill both inputs correctly.";
@@ -131,25 +133,14 @@ function runBinarySearch(event) {
     document.getElementById("index-info").innerText = "";
     document.getElementById("result").innerText = "";
     document.getElementById("status-info").innerText = "";
-    document.getElementById("play-btn").style.animation = "none";
-
     return;
   }
 
-  const index = binarySearch(arr, target);
-
+  binarySearch(arr, target);
   currentStep = 0;
   displayCurrentStep();
 
-  const playBtn = document.getElementById("play-btn");
-
-  if (index === -1) {
-    playBtn.style.animation = "none";
-  } else {
-    document.getElementById("user-instructions").innerHTML =
-      "See the process below!";
-    playBtn.style.animation = "none";
-  }
+  playBtn.style.animation = "none";
 }
 
 function displayCurrentStep() {
@@ -243,19 +234,13 @@ function handleInputChange(event) {
 function checkBothInputs() {
   const inputArray = document.getElementById("user-input-array").value.trim();
   const inputEl = document.getElementById("user-input-el").value.trim();
-  const instructions = document.getElementById("user-instructions");
+  const steps = document.getElementById("steps");
 
   const playBtn = document.getElementById("play-btn");
 
-  if (inputArray === "" && inputEl === "" && instructions === "") {
-    instructions.innerText = "Please fill both inputs.";
-    playBtn.style.animation = "none";
-    document.getElementById("status-info").innerText = "";
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("index-info").innerText = "";
-  } else if (inputArray !== "" && inputEl !== "") {
+  if (inputArray !== "" && inputEl !== "") {
     playBtn.style.animation = "colorCycle 1s infinite";
-  } else if ((inputArray === "" || inputEl === "") && instructions !== "") {
+  } else if ((inputArray === "" || inputEl === "") && steps !== "") {
     playBtn.style.animation = "none";
   }
 }

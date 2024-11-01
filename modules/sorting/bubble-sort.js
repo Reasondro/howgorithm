@@ -6,6 +6,7 @@ let currentStep = 0;
 function bubbleSort(arr) {
   const len = arr.length;
   iterations = []; // ? reset kumpulan steps/iterasi dari awal
+
   for (let i = 0; i < len - 1; i++) {
     const currentI = i; //? simpen i untuk state tersebut
     for (let j = 0; j < len - i - 1; j++) {
@@ -68,18 +69,14 @@ function runBubbleSort(event) {
     ).innerHTML = `Fill your array first `;
     document.getElementById("result").innerText = "";
     document.getElementById("status-info").innerText = "";
-
     document.getElementById("steps").innerText = "";
     document.getElementById("inner-loop-info").innerText = "";
     document.getElementById("outer-loop-info").innerText = "";
-    playBtn.style.animation = "none";
     return;
   }
   bubbleSort(arr);
   currentStep = 0;
   displayCurrentStep();
-  document.getElementById("user-instructions").innerHTML =
-    "See the process below!";
   playBtn.style.animation = "none";
 }
 
@@ -114,31 +111,36 @@ function displayCurrentStep() {
     const statusInfoElement = document.getElementById("status-info");
 
     let outerLoopInfo;
+    let innerLoopInfo;
+    let tempStep = currentStep;
 
     outerLoopInfo = `Outer Loop (i): [${i}]`;
-
-    let innerLoopInfo;
-
     innerLoopInfo = `Inner Loop (j): [${j}]`;
 
     if (swapped) {
       const [index1, index2] = swappedIndices;
       const [value1, value2] = swappedValues;
       statusInfoElement.innerText = `Swapped [${index1}] and [${index2}]: ${value1} ↔ ${value2}`;
-      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
-      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+
       document.getElementById("user-instructions").innerHTML =
         "See the process below!";
+      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+      tempStep = currentStep;
     } else if (i === null) {
-      document.getElementById("user-instructions").innerText =
-        "Finished computing";
+      document.getElementById(
+        "steps"
+      ).innerText = `Finished with ${tempStep} steps!`;
       statusInfoElement.innerText = "SORTED!";
+      document.getElementById("outer-loop-info").innerText = "";
+      document.getElementById("inner-loop-info").innerText = "";
     } else {
       statusInfoElement.innerText = "COMPARING";
-      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
-      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
       document.getElementById("user-instructions").innerHTML =
         "See the process below!";
+      document.getElementById("outer-loop-info").innerText = outerLoopInfo;
+      document.getElementById("inner-loop-info").innerText = innerLoopInfo;
+      tempStep = currentStep;
     }
   }
 
@@ -177,29 +179,17 @@ function handleInputChange(event) {
 
 function checkInput() {
   const inputArray = document.getElementById("user-input-array").value.trim();
-  const instructions = document.getElementById("user-instructions");
 
   const steps = document.getElementById("steps");
   const playBtn = document.getElementById("play-btn");
-
-  const outerLoopInfo = document.getElementById("outer-loop-info");
-  const innerLoopInfo = document.getElementById("inner-loop-info");
 
   if (inputArray !== "" && steps !== "") {
     playBtn.style.animation = "colorCycle 1s infinite";
   } else if (inputArray !== "") {
     //? reset messages
-    // instructions.innerText = "Now click the play button!!!!";
     playBtn.style.animation = "colorCycle 1s infinite";
-    // steps.innerText = "";
-    outerLoopInfo.innerText = "";
-    innerLoopInfo.innerText = "";
   } else if (inputArray === "" && steps !== "") {
-    // instructions.innerText = "Fill your array!";
     playBtn.style.animation = "none";
-    // outerLoopInfo.innerText = "";
-    // innerLoopInfo.innerText = "";
-    // steps.innerText = "";
   }
 }
 

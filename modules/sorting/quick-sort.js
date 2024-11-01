@@ -122,16 +122,13 @@ function runQuickSort(event) {
     document.getElementById("status-info").innerText = "";
     document.getElementById("steps").innerText = "";
     document.getElementById("inner-loop-info").innerText = "";
-
     document.getElementById("outer-loop-info").innerText = "";
-    playBtn.style.animation = "none";
     return;
   }
   quickSort(arr);
   currentStep = 0;
   displayCurrentStep();
-  document.getElementById("user-instructions").innerHTML =
-    "See the process below!";
+
   playBtn.style.animation = "none";
 }
 
@@ -236,7 +233,6 @@ function previousStep() {
 
 function handleInputChange(event) {
   const inputField = event.target;
-  const steps = document.getElementById("steps").innerText;
 
   if (inputField.value.trim() !== "") {
     inputField.style.animation = "none";
@@ -251,21 +247,13 @@ function handleInputChange(event) {
 
 function checkInput() {
   const inputArray = document.getElementById("user-input-array").value.trim();
-  const instructions = document.getElementById("user-instructions");
 
   const steps = document.getElementById("steps");
   const playBtn = document.getElementById("play-btn");
 
-  const outerLoopInfo = document.getElementById("outer-loop-info");
-  const innerLoopInfo = document.getElementById("inner-loop-info");
-
-  if (inputArray !== "" && steps !== "") {
-    playBtn.style.animation = "colorCycle 1s infinite";
-  } else if (inputArray !== "") {
+  if (inputArray !== "") {
     //? reset messages
     playBtn.style.animation = "colorCycle 1s infinite";
-    outerLoopInfo.innerText = "";
-    innerLoopInfo.innerText = "";
   } else if (inputArray === "" && steps !== "") {
     playBtn.style.animation = "none";
   }
