@@ -1,11 +1,13 @@
 #grid-container {
+  display: grid;
+  height: 100%;
   grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 #grid-container > section {
   text-align: center;
-  /* padding: 0.8rem 0.8rem; */
-  padding: 0;
   font-size: 30px;
   border-radius: 15px;
   overflow: hidden;
@@ -20,10 +22,10 @@
   border: 1px solid var(--color-grey-400);
 }
 
-#overview-content h1 {
+.item1 #overview-content h1 {
   font-size: 3.5rem;
 }
-#overview-content p {
+.item1 #overview-content p {
   font-size: 1.25rem;
   text-align: left;
 }
@@ -34,12 +36,9 @@
   grid-row-start: 1;
   grid-row-end: 2;
   border: 1px solid var(--color-grey-400);
-  /* display: flex;
-  flex-direction: column; */
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 1fr 1fr;
   height: 25rem;
-
   align-items: center;
 }
 
@@ -48,9 +47,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8.5rem;
-  min-height: 8.5rem;
-  max-height: 8.5rem;
+  height: 6rem;
+  min-height: 6rem;
+  max-height: 6rem;
+}
+.item2 p {
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 400;
 }
 
 .item2 #guide {
@@ -60,15 +65,9 @@
   font-size: 2.5rem;
 }
 
-.item2 p {
-  padding: 0;
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 400;
-}
-
 .item2 #user-instructions {
   font-style: italic;
+  font-weight: bold;
 }
 .item3 {
   grid-column-start: 1;
@@ -107,8 +106,57 @@
   grid-row: 5/6;
 }
 
-.item4 form p {
-  margin: 0;
+.item4 form {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  grid-column-gap: 0.5rem;
+}
+
+.item4 form input {
+  width: 100%;
+  height: 5rem;
+  background-color: var(--color-white-600);
+  border: 1px solid var(--color-grey-300);
+  box-shadow: 0px 0px 1px var(--color-grey-100);
+  padding: 0 0.7rem;
+
+  border-radius: 10px;
+  overflow: none;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-white-600);
+  animation: colorCycleGrey 1s infinite;
+}
+
+.item4 form input:focus {
+  outline: none;
+  animation: none;
+}
+
+.item4 form #button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item4 form button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.item4 form #play-btn {
+  color: var(--color-accent-600);
+  align-self: center;
+  width: 5rem;
+  object-fit: cover;
+  cursor: pointer;
+  color: var(--color-red-500);
+  cursor: pointer;
 }
 
 .item5 {
@@ -123,7 +171,7 @@
 
 .item5 {
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 1fr 1fr;
   padding: 0;
   overflow: hidden;
@@ -137,6 +185,9 @@
   height: 100%;
   align-items: center;
   overflow: hidden;
+  min-height: 6rem;
+  height: 6rem;
+  max-height: 6rem;
 }
 
 .item5 #controller-text {
@@ -156,30 +207,28 @@
   height: 100%;
   grid-row: 2/4;
   border: none;
-  background-color: transparent;
+  background-color: var(--color-primary);
+  transition: background-color 0.1s ease-in 0s;
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.item5 button:hover {
+  background-color: var(--color-secondary);
 }
 
 .item5 button svg {
   margin: 0;
   width: 5rem;
   padding: 1rem;
-  /* color: var(--color-white-600); */
-  color: var(--color-primary);
+
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: background-color 0.1s ease-in 0s, color 0.1s ease-in 0s;
-}
-.item5 button :hover {
-  background-color: var(--color-primary);
-  color: var(--color-white-600);
+  transition: color 0.1s ease-in 0s;
 }
 
 @media (max-width: 1800px) {
-  #grid-container {
-    padding: 0.5rem;
-  }
-
   .item1 {
     height: 17rem;
   }
@@ -188,9 +237,9 @@
   }
 
   .item2 #guide-container {
-    height: 6rem;
-    min-height: 6rem;
-    max-height: 6rem;
+    height: 4rem;
+    min-height: 4rem;
+    max-height: 4rem;
   }
 
   .item2 #guide {
@@ -201,7 +250,7 @@
   .item2 p {
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
   }
 
@@ -223,16 +272,81 @@
     font-size: 1.8rem;
   }
 
+  .item4 form input {
+    font-size: 1.2rem;
+  }
+
   .item5 {
     height: 20rem;
   }
 
   .item5 #controller-container {
-    min-height: 6rem;
-    max-height: 6rem;
+    min-height: 4rem;
+    height: 4rem;
+    max-height: 4rem;
   }
 
   .item5 #controller-text {
     font-size: 2rem;
+  }
+}
+
+@keyframes colorCycle {
+  0% {
+    color: var(--color-red-500);
+  }
+  50% {
+    color: var(--color-red-100);
+  }
+  100% {
+    color: var(--color-red-500);
+  }
+}
+
+@keyframes colorCycleGrey {
+  0% {
+    background-color: var(--color-grey-300);
+  }
+  50% {
+    background-color: var(--color-grey-100);
+  }
+  100% {
+    background-color: var(--color-grey-300);
+  }
+}
+
+@keyframes colorCycleBlack {
+  0% {
+    background-color: var(--color-black-700);
+  }
+  50% {
+    background-color: var(--color-white-600);
+  }
+  100% {
+    background-color: var(--color-black-700);
+  }
+}
+
+@keyframes colorCycleBlue {
+  0% {
+    background-color: var(--color-primary);
+  }
+  50% {
+    background-color: var(--color-secondary);
+  }
+  100% {
+    background-color: var(--color-primary);
+  }
+}
+
+@keyframes colorCycleAccent {
+  0% {
+    color: var(--color-accent-100);
+  }
+  50% {
+    color: var(--color-accent-300);
+  }
+  100% {
+    color: var(--color-accent-100);
   }
 }
