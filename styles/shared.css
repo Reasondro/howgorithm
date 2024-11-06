@@ -34,7 +34,8 @@ html {
 }
 
 body {
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
+  font-family: "DM Sans", sans-serif;
   margin: 0px;
   height: 100%;
   min-height: 100%;
