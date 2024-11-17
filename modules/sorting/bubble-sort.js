@@ -126,11 +126,11 @@ function displayCurrentStep() {
         "See the process below!";
       document.getElementById("outer-loop-info").innerText = outerLoopInfo;
       document.getElementById("inner-loop-info").innerText = innerLoopInfo;
-      tempStep = currentStep;
+      // tempStep = currentStep;
     } else if (i === null) {
       document.getElementById(
         "steps"
-      ).innerText = `Finished with ${tempStep} steps!`;
+      ).innerText = `Finished with ${currentStep} steps!`;
       statusInfoElement.innerText = "SORTED!";
       document.getElementById("outer-loop-info").innerText = "";
       document.getElementById("inner-loop-info").innerText = "";
@@ -140,7 +140,7 @@ function displayCurrentStep() {
         "See the process below!";
       document.getElementById("outer-loop-info").innerText = outerLoopInfo;
       document.getElementById("inner-loop-info").innerText = innerLoopInfo;
-      tempStep = currentStep;
+      // tempStep = currentStep;
     }
   }
 

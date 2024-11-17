@@ -170,11 +170,20 @@ function displayCurrentStep() {
 
     document.getElementById("result").innerHTML = `[${arrayDisplay}]`;
 
+    let tempStep = currentStep;
     let statusMessage = "";
+
+    let indexInfo = `Left: [${l}], Right: [${r}]`;
+    if (mid !== null) {
+      indexInfo += `, Mid: [${mid}]`;
+    }
+    document.getElementById("index-info").innerText = indexInfo;
+
     if (comparison === "found") {
       statusMessage = `Element found at index ${mid}.`;
-      document.getElementById("user-instructions").innerText =
-        "Finished computing";
+      document.getElementById(
+        "steps"
+      ).innerText = `Finished with ${tempStep} steps!`;
     } else if (comparison === "less") {
       statusMessage = `Target is greater than ${array[mid]}. Moving right.`;
       document.getElementById("user-instructions").innerText =
@@ -184,18 +193,12 @@ function displayCurrentStep() {
       document.getElementById("user-instructions").innerText =
         "See the process below!";
     } else if (comparison === "not found") {
-      document.getElementById("user-instructions").innerText =
-        "Finished computing";
+      document.getElementById("steps").innerText = "Finished computing";
       statusMessage = `Element not found in the array.`;
+      document.getElementById("index-info").innerText = "";
     }
 
     document.getElementById("status-info").innerText = statusMessage;
-
-    let indexInfo = `Left: [${l}], Right: [${r}]`;
-    if (mid !== null) {
-      indexInfo += `, Mid: [${mid}]`;
-    }
-    document.getElementById("index-info").innerText = indexInfo;
   }
 
   document.getElementById("previous-btn").disabled = currentStep === 0;
